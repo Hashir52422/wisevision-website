@@ -113,3 +113,12 @@ export default function IndoorScreensPage() {
     </div>
   );
 }
+
+
+// This code defines a React component 
+// for the Indoor Screens page of a website.
+//  It imports necessary components such as Header, Footer, and IndoorScreens. 
+// The component uses a data object called indoorSMDData to store information
+//  about the banner, title, description, and products related to indoor SMD screens. 
+// The component then renders the Header, IndoorScreens with the provided data, 
+// and the Footer.
