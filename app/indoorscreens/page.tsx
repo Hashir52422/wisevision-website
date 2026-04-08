@@ -93,7 +93,7 @@ export default function IndoorScreensPage() {
         subtitle: "Indoor"
       },
         {
-        image: "/images/PilotproSeries1.png",
+        image: "/images/PilotProSeries1.png",
         title: "Pilot Pro Series",
         subtitle: "Indoor"
       },
