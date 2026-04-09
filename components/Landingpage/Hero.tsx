@@ -43,7 +43,7 @@ const slides: Slide[] = [
     title: "Pakistan's Trusted Display Network",
     subtitle: "Delivering comprehensive visual hardware nationwide. We supply and integrate rugged outdoor SMDs, seamless indoor video walls, and interactive digital standees.",
     image: "",
-    bgImage: "/images/HeroBanner3.jpg.jpeg",
+    bgImage: "/images/herobanner3.jpg.jpeg",
     titleColor: "text-white",
     subtitleColor: "text-white/80",
     textAlign: "center",
