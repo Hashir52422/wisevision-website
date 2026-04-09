@@ -4,6 +4,7 @@ import { content } from '@/lib/content';
 import arrowDown from '@/public/images/arrow-down.svg';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 // ── Products dropdown data ────────────────────────────────────────────────────
 const productCategories = {
@@ -114,6 +115,7 @@ export default function Header() {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -169,18 +171,29 @@ export default function Header() {
                   onMouseEnter={() => isProducts && setProductsOpen(true)}
                   onMouseLeave={() => isProducts && setProductsOpen(false)}
                 >
-                  <button
-                    className={`flex items-center gap-2 text-lg xl:text-[24px] font-outfit whitespace-nowrap transition-all duration-200 ${
-                      link.active || (isProducts && productsOpen) ? 'font-semibold text-white' : 'font-normal text-white/90 hover:text-white'
-                    }`}
-                  >
-                    {link.name}
-                    {link.hasDropdown && (
-                      <div className={`flex items-center justify-center w-[14px] h-[8.031px] transition-transform duration-300 ${isProducts && productsOpen ? 'rotate-180' : ''}`}>
-                        <img src={arrowDown.src} alt="dropdown arrow" className="w-full h-full" />
-                      </div>
-                    )}
-                  </button>
+                  {isProducts ? (
+                    <button
+                      className={`flex items-center gap-2 text-lg xl:text-[24px] font-outfit whitespace-nowrap transition-all duration-200 ${
+                        link.active || (isProducts && productsOpen) ? 'font-semibold text-white' : 'font-normal text-white/90 hover:text-white'
+                      }`}
+                    >
+                      {link.name}
+                      {link.hasDropdown && (
+                        <div className={`flex items-center justify-center w-[14px] h-[8.031px] transition-transform duration-300 ${isProducts && productsOpen ? 'rotate-180' : ''}`}>
+                          <img src={arrowDown.src} alt="dropdown arrow" className="w-full h-full" />
+                        </div>
+                      )}
+                    </button>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`flex items-center gap-2 text-lg xl:text-[24px] font-outfit whitespace-nowrap transition-all duration-200 ${
+                        link.active ? 'font-semibold text-white' : 'font-normal text-white/90 hover:text-white'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  )}
 
                   {/* Main Dropdown Panel */}
                   {isProducts && (
@@ -251,18 +264,102 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-[#05293a] border-t border-[#14a4e9]/30">
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              {content.header.navigation.links.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`text-base font-outfit py-2 ${
-                    link.active ? 'font-semibold text-white' : 'font-normal text-white'
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {content.header.navigation.links.map((link) => {
+                const isProducts = link.hasDropdown && link.name === 'Products';
+                
+                if (isProducts) {
+                  return (
+                    <div key={link.name}>
+                      <button
+                        className={`text-base font-outfit py-2 flex items-center gap-2 w-full text-left ${
+                          link.active ? 'font-semibold text-white' : 'font-normal text-white'
+                        }`}
+                        onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+                      >
+                        {link.name}
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-200 ${mobileProductsOpen ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      
+                      {/* Mobile Products Dropdown */}
+                      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                        mobileProductsOpen ? 'max-h-[70vh] opacity-100' : 'max-h-0 opacity-0'
+                      }`}>
+                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mt-2 space-y-4 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-[#14a4e9] scrollbar-thumb-rounded-full">
+                          {/* Left Column Categories */}
+                          <div className="space-y-3">
+                            {productCategories.left.map((cat) => (
+                              <div key={cat.label}>
+                                <button
+                                  onClick={() => {
+                                    if (cat.label === 'SMD SCREENS OUTDOOR') {
+                                      router.push('/outdoorscreens');
+                                    } else if (cat.label === 'SMD SCREENS INDOOR') {
+                                      router.push('/indoorscreens');
+                                    }
+                                    setMobileMenuOpen(false);
+                                  }}
+                                  className="w-full text-left font-outfit font-bold text-[15px] text-white/90 hover:text-white transition-colors duration-150"
+                                >
+                                  {cat.label}
+                                </button>
+                                
+                                {/* Sub-items */}
+                                {cat.hasDropdown && cat.items.length > 0 && (
+                                  <div className="mt-2 ml-2 space-y-1">
+                                    {cat.items.map((item) => (
+                                      <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        className="block font-outfit text-[14px] text-white/70 hover:text-white transition-colors duration-150 py-1"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                          
+                          {/* Right Column Links */}
+                          <div className="space-y-2 pt-2 border-t border-white/20">
+                            {productCategories.right.map((item) => (
+                              <a
+                                key={item.label}
+                                href={item.href}
+                                className="block font-outfit font-bold text-[15px] text-white/90 hover:text-white transition-colors duration-150 py-2"
+                              >
+                                {item.label}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+                
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`text-base font-outfit py-2 ${
+                      link.active ? 'font-semibold text-white' : 'font-normal text-white'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}

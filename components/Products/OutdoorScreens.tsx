@@ -47,7 +47,7 @@ export default function OutdoorScreens({
       />
 
       {/* Product Cards Module Series */}
-      <div className="bg-gray-50 py-16 px-4">
+      <div id="module" className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-outfit text-center text-gray-900 mb-10">
             {sectionHeading}
@@ -80,7 +80,7 @@ export default function OutdoorScreens({
       </div>
 
       {/* Product Cards Premium */}
-      <div className="bg-gray-50 py-16 px-4">
+      <div id="premium" className="bg-gray-50 py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-outfit text-center text-gray-900 mb-10">
             {sectionHeadingP}
@@ -113,7 +113,7 @@ export default function OutdoorScreens({
       </div>
 
       {/* Product Cards Rental */}
-      <div className="bg-gray-50 py-16 px-4 font-outfit">
+      <div id="rental" className="bg-gray-50 py-16 px-4 font-outfit">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl text-center text-gray-900 mb-10">
             {sectionHeadingR}
