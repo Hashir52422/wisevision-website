@@ -1,6 +1,6 @@
 import Header from '@/components/Landingpage/Header';
-import OutdoorScreens from '@/components/Products/OutdoorScreens';
 import Footer from '@/components/Landingpage/Footer';
+import Products from '@/components/Products/productsView';
 
 export default function OutdoorScreensPage() {
   const outdoorSMDData = {
@@ -83,29 +83,28 @@ export default function OutdoorScreensPage() {
         title: "Dazzel IV Series",
         subtitle: "Outdoor"
       },
-        {
+      {
         image: "/images/shinproseries.png",
         title: "Shin Pro Series",
         subtitle: "Outdoor"
       },
-        {
+      {
         image: "/images/pilotproseries.png",
         title: "Pilot Pro Series",
         subtitle: "Outdoor"
       },
-        {
+      {
         image: "/images/Eswanseries.png",
         title: "E-Swan Series",
         subtitle: "Outdoor"
       },
-
     ]
   };
 
   return (
     <div className="min-h-screen">
       <Header />
-      <OutdoorScreens {...outdoorSMDData} />
+      <Products {...outdoorSMDData} />
       <Footer />
     </div>
   );

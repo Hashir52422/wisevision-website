@@ -61,6 +61,9 @@ function ProductSection({ label, hasDropdown, items, router }: { label: string; 
     if (label === 'SMD SCREENS INDOOR') {
       router?.push('/indoorscreens');
     }
+    if(label === 'COB LED DISPLAY'){
+      router?.push('/cob-led-display')
+    }
   };
 
   return (
@@ -72,7 +75,7 @@ function ProductSection({ label, hasDropdown, items, router }: { label: string; 
       <button
         onClick={handleClick}
         className={`flex items-center gap-2 w-full text-left mb-2 transition-colors duration-150 ${
-          hasDropdown ? 'cursor-pointer' : 'cursor-default'
+          hasDropdown || label === 'COB LED DISPLAY' ? 'cursor-pointer' : 'cursor-default'
         } ${isHovered ? 'text-[#007bff]' : 'text-[#1a1a1a]'}`}
       >
         <span className="font-outfit font-bold text-[15px] tracking-wide uppercase">
