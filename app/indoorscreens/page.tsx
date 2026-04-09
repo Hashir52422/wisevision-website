@@ -1,6 +1,6 @@
 import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
-import IndoorScreens from '@/components/Products/IndoorScreens';
+import Products from '@/components/Products/productsView';
 
 export default function IndoorScreensPage() {
   const indoorSMDData = {
@@ -108,7 +108,7 @@ export default function IndoorScreensPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <IndoorScreens {...indoorSMDData} />
+      <Products {...indoorSMDData} />
       <Footer />
     </div>
   );
