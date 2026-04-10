@@ -77,12 +77,12 @@ export const content = {
       {
         title: "Fauji Fertilizer Company",
         subtitle: "P-2.5 SMD LED Video Wall",
-        image: "https://www.figma.com/api/mcp/asset/4eeabeab-0d66-41c9-8d02-97c90f7be50b"
+        image: "/images/FFC.jpeg"
       },
       {
         title: "Air Weapons Complex",
         subtitle: "P-3.9 Portable SMD LED Video Wall",
-        image: "https://www.figma.com/api/mcp/asset/f762fd5b-b710-4d80-a399-e63d69709c13"
+        image: "/images/AVC.jpeg"
       }
     ]
   },
