@@ -45,7 +45,7 @@ const productCategories = {
   right: [
     { label: 'Digital Podium', href: '#' },
     { label: 'SAMSUNG DISPLAYS', href: '/samsung' },
-    { label: 'PHILIPS DISPLAYS', href: '#' },
+    { label: 'PHILIPS DISPLAYS', href: '/phillips' },
   ],
 };
 
@@ -63,6 +63,9 @@ function ProductSection({ label, hasDropdown, items, router }: { label: string; 
     }
     if(label === 'COB LED DISPLAY'){
       router?.push('/cob-led-display')
+    }
+    if(label === 'DIGITAL STANDEE'){
+      router?.push('/digitalStandee')
     }
   };
 
@@ -222,12 +225,12 @@ export default function Header() {
                           </div>
 
                           {/* Right Column (Single Links) */}
-                          <div className="flex flex-col gap-0">
+                          <div className="flex flex-col gap-6">
                             {productCategories.right.map((item) => (
                               <div key={item.label}>
                                 <a
                                   href={item.href}
-                                  className="flex items-center justify-between py-4 font-outfit font-bold text-[15px] text-[#1a1a1a] hover:text-[#007bff] transition-colors duration-150 group"
+                                  className="flex items-center justify-between py-1 font-outfit font-bold text-[15px] text-[#1a1a1a] hover:text-[#007bff] transition-colors duration-150 group"
                                 >
                                   <span className="uppercase">{item.label}</span>
                                   <svg className="w-4 h-4 text-[#1a1a1a] group-hover:text-[#007bff] transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

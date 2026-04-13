@@ -12,9 +12,10 @@ export interface ProductDetailProps {
   specs: Spec[];
   textcolor?: string;
   showSpecs?: boolean;
+  inches?: string;
 }
 
-export default function ProductDetail({ image, title, description, specs, textcolor = "#0f141e", showSpecs = true }: ProductDetailProps) {
+export default function ProductDetail({ image, title, description, specs, textcolor = "#0f141e", showSpecs = true, inches }: ProductDetailProps) {
   // Split specs into two columns
   const half = Math.ceil(specs.length / 2);
   const leftSpecs = specs.slice(0, half);
@@ -43,6 +44,7 @@ export default function ProductDetail({ image, title, description, specs, textco
             <h1 className="font-outfit font-bold text-3xl md:text-4xl text-[#0f141e] mb-4">
               {title}
             </h1>
+            <p className="text-[#9B9B9B] font-outfit text-[16px] md:text-[17px] mb-4">{inches}</p>
             <p className="font-outfit text-[15px] md:text-[16px] text-[#555] leading-relaxed mb-8 max-w-xl">
               {description}
             </p>

@@ -1,3 +1,5 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ProductCard from './card';
 import Banner from '@/components/Products/banner';
@@ -9,8 +11,14 @@ interface Product {
   href?: string;
   id?: string;
   name?: string;
-  features?: string[];
-  sizes?: string[];
+  features?: string[] | undefined;
+  sizes?: string[] | undefined;
+}
+
+interface NavigationButton {
+  label: string;
+  targetId: string;
+  href?: string;
 }
 
 interface ProductsProps {
@@ -25,9 +33,11 @@ interface ProductsProps {
   productsP?: Product[];
   productsR?: Product[];
   productsS?: Product[];
+  navigationButtons?: NavigationButton[];
   textColor?: string; // Legacy prop for backward compatibility
   bannerTextColor?: string; // Specific color for banner text
   sectionTextColor?: string; // Specific color for section headings
+  logo?: string; // Brand logo for banner
 }
 
 export default function Products({
@@ -42,14 +52,28 @@ export default function Products({
   productsP,
   productsR,
   productsS,
+  navigationButtons,
   textColor = "text-white", // Legacy prop for backward compatibility
   bannerTextColor,
-  sectionTextColor = "text-[#08425D]"
+  sectionTextColor = "text-[#08425D]",
+  logo
 }: ProductsProps) {
   
+  // Active button state
+  const [activeButton, setActiveButton] = useState(navigationButtons?.[0]?.targetId || '');
+
   // Use specific colors if provided, otherwise fall back to legacy textColor
   const bannerColor = bannerTextColor;
   const sectionColor = sectionTextColor;
+
+  // Smooth scroll function with active state update
+  const scrollToSection = (targetId: string) => {
+    setActiveButton(targetId);
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const renderProductGrid = (items: Product[] = []) => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -66,7 +90,7 @@ export default function Products({
   );
 
   return (
-    <div className={`w-full ${textColor}`}>
+    <div className={`w-full ${textColor}`} id="all">
       {/* Hero Banner Section */}
       {(bannerImage || title) && (
         <Banner 
@@ -74,8 +98,32 @@ export default function Products({
           bannerAlt={bannerAlt}
           title={title}
           description={description}
-          className={bannerColor} 
+          className={bannerColor}
+          logo={logo}
         />
+      )}
+
+      {/* Navigation Buttons */}
+      {navigationButtons && navigationButtons.length > 0 && (
+        <div className="bg-[#FAFAFA] py-8 px-4 border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+              {navigationButtons.map((button, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToSection(button.targetId)}
+                  className={`px-6 py-3 font-outfit font-medium rounded-full transition-all duration-200 shadow-sm hover:shadow-md ${
+                    activeButton === button.targetId 
+                      ? 'bg-[#05293A] text-white border-2 border-[#05293A]' 
+                      : 'bg-white text-[#05293A] border border-gray-300 hover:bg-gray-50 hover:border-[#05293A]'
+                  }`}
+                >
+                  {button.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Standard Module Series */}
@@ -108,62 +156,57 @@ export default function Products({
 
       {/* Touch Screen Section */}
       {productsS && productsS.length > 0 && (
-        <div id="smart" className="bg-[#FAFAFA] py-16 px-4 border-t border-gray-100">
+        <div className="bg-[#FAFAFA] py-16 px-4 border-t border-gray-100">
           <div className="max-w-7xl mx-auto">
-
             <div className="space-y-16">
-              {productsS.map((product, index) => (
-                <div key={index}>
-                  <h2 className={`text-3xl md:text-4xl font-outfit text-center mb-10 ${sectionColor}`}>
-                    {product.title}
-                  </h2>
-                  
-                  <div
-                    className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col md:flex-row items-center gap-10"
-                  >
-                    {/* Left: Product Image */}
-                    <div className="w-full md:w-1/2 flex items-center justify-center p-6">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full max-h-90 pr-15 object-contain rounded-xl"
-                      />
-                    </div>
-
-                    {/* Right: Product Info */}
-                    <div className="w-full md:w-1/2 flex flex-col justify-center gap-4 max-w-[500px]">
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        {product.name}
-                      </h3>
-
-                      {product.subtitle && (
-                        <p className="text-gray-400 text-base text-center">
-                          {product.subtitle}
-                        </p>
-                      )}
-
-                      <p className="text-gray-400 text-base text-center">
-                        {product.sizes ?? '43″ 55″'}
-                      </p>
-
-                      <ul className="space-y-2 mt-2">
-                        {product.features?.map((feature: string, index: number) => (
-                          <li key={index} className="flex items-start gap-2 text-gray-700 text-base">
-                            <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-6 flex justify-center w-full"> 
-                        <button className="bg-[#08425D] hover:bg-[#1a4068] text-[#FFFFFF] px-8 py-3 rounded-md transition-colors duration-200">
-                          Get A Quote
-                        </button>
+              {productsS.map((product, index) => {
+                // Generate unique section ID based on product title
+                const sectionId = product.title.toLowerCase().replace(/\s+/g, '-');
+                return (
+                  <div key={index} id={sectionId}>
+                    <h2 className={`text-3xl md:text-4xl font-outfit text-center mb-10 ${sectionColor}`}>
+                      {product.title}
+                    </h2>
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col md:flex-row items-center gap-10">
+                      <div className="w-full md:w-1/2 flex items-center justify-center p-6">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full max-h-90 pr-15 object-contain rounded-xl"
+                        />
+                      </div>
+                      <div className="w-full md:w-1/2 flex flex-col justify-center gap-4 max-w-[500px]">
+                        <h3 className="text-2xl font-bold text-gray-900">
+                          {product.name}
+                        </h3>
+                        {product.subtitle && (
+                          <p className="text-gray-400 text-base text-center">
+                            {product.subtitle}
+                          </p>
+                        )}
+                        {product.sizes && (
+                          <p className="text-gray-400 text-base text-center">
+                            {product.sizes}
+                          </p>
+                        )}
+                        <ul className="space-y-2 mt-2">
+                          {product.features?.map((feature: string, index: number) => (
+                            <li key={index} className="flex items-start gap-2 text-gray-700 text-base">
+                              <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="mt-6 flex justify-center w-full"> 
+                          <button className="bg-[#08425D] hover:bg-[#1a4068] text-[#FFFFFF] px-8 py-3 rounded-md transition-colors duration-200">
+                            Get A Quote
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

@@ -5,13 +5,15 @@ export default function Banner({
     bannerAlt,
     title,
     description,
-    className = ""
+    className = "",
+    logo
 }: {
     bannerImage: string;
     bannerAlt: string;
     title: string;
     description: string;
     className?: string;
+    logo?: string;
 }) {
     return (
         <div>
@@ -36,6 +38,20 @@ export default function Banner({
             {description}
           </p>
         </div>
+
+        {/* Logo - bottom right */}
+        {logo && (
+          <div className="absolute bottom-4 left-4 z-10 ">
+            <Image
+              src={logo}
+              alt="Brand Logo"
+              width={120}
+              height={60}
+              className="object-contain ml-12 mb-5"
+            />
+          </div>
+        )}
+
       </div>
         </div>
     );

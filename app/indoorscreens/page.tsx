@@ -1,3 +1,4 @@
+'use client'
 import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
 import Products from '@/components/Products/productsView';
@@ -108,7 +109,14 @@ export default function IndoorScreensPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <Products {...indoorSMDData} />
+      <Products {...indoorSMDData}
+      navigationButtons={[
+        {label: "All Products", targetId: "all"},
+        {label: "Module Series", targetId: "module"}, 
+        {label: "Premium Series", targetId: "premium"},
+        {label: "Rental Series", targetId: "rental"}
+      ]}
+      />
       <Footer />
     </div>
   );

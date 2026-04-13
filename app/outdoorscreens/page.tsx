@@ -104,7 +104,13 @@ export default function OutdoorScreensPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <Products {...outdoorSMDData} />
+      <Products {...outdoorSMDData}
+        navigationButtons={[
+        {label: "All Products", targetId: "all"},
+        {label: "Module Series", targetId: "module"}, 
+        {label: "Premium Series", targetId: "premium"},
+        {label: "Rental Series", targetId: "rental"}
+      ]} />
       <Footer />
     </div>
   );

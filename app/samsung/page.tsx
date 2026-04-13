@@ -2,10 +2,10 @@ import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
 import Products from '@/components/Products/productsView';
 
-export default function OutdoorScreensPage() {
-  const outdoorSMDData = {
+export default function samsung() {
+  const SamsungData = {
     bannerImage: "/images/SamsungBanner.png",
-    bannerAlt: "Outdoor SMDs Banner",
+    bannerAlt: "Samsung Banner",
     title: "Samsung Visual Infrastructure",
     description: "Your trusted partner for Samsung commercial visual technology. Delivering industry-leading video walls, interactive collaborative screens, and corporate monitors for high-performance workspaces.",
     sectionHeading: "Video Walls",
@@ -13,12 +13,24 @@ export default function OutdoorScreensPage() {
     sectionHeadingR: "Monitors",
     // Color control props
     bannerTextColor: "text-white",
+    // Brand logo (empty as requested - user will add image)
+    logo: '/images/SamsungLogo.png',
+    // Navigation buttons
+    navigationButtons: [
+      { label: "All Products", targetId: "all" },
+      { label: "Video Walls", targetId: "module" },
+      { label: "Digital Signage", targetId: "premium" },
+      { label: "Interactive Screens", targetId: "interactive-screen" },
+      { label: "Touch Screen", targetId: "touch-screen" },
+      { label: "Hospitality TV", targetId: "hospitality-tv" },
+      { label: "Monitors", targetId: "rental" }
+    ],
     products: [
       {
         image: "/images/VHC.png",
         title: "VHC-R Razor-Thin Bezels",
         subtitle: "55’’",
-        href: "/products/p3-smd-screen"
+        href: "/products/vhc-r"
       },
       {
         image: "/images/VHR.png",
@@ -145,7 +157,7 @@ export default function OutdoorScreensPage() {
   return (
     <div className="min-h-screen">
       <Header />
-      <Products {...outdoorSMDData} />
+      <Products {...SamsungData} />
       <Footer />
     </div>
   );
