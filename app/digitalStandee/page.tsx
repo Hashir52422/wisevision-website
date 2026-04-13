@@ -4,8 +4,8 @@ import Products from '@/components/Products/productsView';
 
 export default function digitalStandee() {
   const digitalStandee = {
-    bannerImage: "/images/STandeeBanner.jpeg",
-    bannerAlt: "Philips Banner",
+    bannerImage: "/images/StandeeBanner.jpeg",
+    bannerAlt: "Digital Standee Banner",
     title: "Premium Digital Standees",
     description: "Supply and integrate premium indoor digital standees, featuring authorized Samsung touch and non-touch technology for high-traffic environments.",
     bannerTextColor: "text-black",
@@ -43,7 +43,7 @@ export default function digitalStandee() {
         ]
       },
           {
-        image: "/images/Non-TouchSTandee.png",
+        image: "/images/Non-TouchStandee.png",
         title: "Samsung Non-Touch Digital Standee",
         subtitle: "",
         name: "Samsung Non-Touch Standee",

@@ -4,7 +4,7 @@ import Products from '@/components/Products/productsView';
 
 export default function phillips() {
   const phillipsData = {
-    bannerImage: "/images/PhilipsBanner.jpeg",
+    bannerImage: "/images/Philipsbanner.jpeg",
     bannerAlt: "Philips Banner",
     title: "Philips Visual Infrastructure",
     description: "Your trusted partner for Philips professional display technology. Delivering industry-leading interactive screens, specialized hospitality displays, and commercial digital signage for high-performance environments.",

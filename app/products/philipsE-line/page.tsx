@@ -29,8 +29,8 @@ export default function VhcR() {
     <div className="min-h-screen bg-white">
       <Header />
       <Banner 
-        bannerImage='/images/PhilipsBanner.jpeg'
-        bannerAlt="Philips E-Line Interactive Screen"
+        bannerImage='/images/Philipsbanner.jpeg'
+        bannerAlt="Philips banner"
         title="Philips E-Line Interactive Screen"
         logo='/images/PhilipsLogo.png'
         description="The Philips Interactive Display is designed to inspire interaction, creativity, and teamwork in collaborative environments."
