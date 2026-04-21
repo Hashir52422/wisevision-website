@@ -2,7 +2,7 @@ import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
 import Banner from '@/components/Products/banner';
 import WhyChooseUs from '@/components/Landingpage/WhyChooseUs';
-import Affiliation from '@/components/affilation/afilliation';
+import Affiliation from '@/components/affilation/certificates';
 import Reviews from '@/components/Landingpage/Reviews';
 
 export default function AboutUs() {

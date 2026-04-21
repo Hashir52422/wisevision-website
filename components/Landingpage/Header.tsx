@@ -8,7 +8,7 @@ const navLinks = [
   { name: "Home", href: "/", active: true },
   { name: "Products", href: "/products", hasDropdown: true },
   { name: "Applications", href: "/#" },
-  { name: "Blog", href: "/#" },
+  { name: "Blog", href: "/blog" },
   { name: "Projects", href: "/#" },
   { name: "Affiliations", href: "/affilations" },
   { name: "About Us", href: "/aboutUs" },
