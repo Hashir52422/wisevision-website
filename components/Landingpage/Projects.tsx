@@ -1,13 +1,15 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import BlogCard from '@/components/blog/blogCard';
 
-const projects = {
+const projectsData = {
   title: "Our Projects",
   subtitle: "See how our precision LED installations elevate retail, corporate, and outdoor spaces nationwide",
   featured: [
-    { title: "Fauji Fertilizer Company", subtitle: "P-2.5 SMD LED Video Wall", image: "/images/FFC.jpeg" },
-    { title: "Air Weapons Complex", subtitle: "P-3.9 Portable SMD LED Video Wall", image: "/images/AVC.jpeg" },
+    { title: "Fauji Fertilizer Company", tag: "P-2.5 SMD LED Video Wall", image: "/images/FFC.jpeg", href: "#" },
+    { title: "Air Weapons Complex", tag: "P-3.9 Portable SMD LED Video Wall", image: "/images/AVC.jpeg", href: "#" },
+    { title: "Corporate Headquarters", tag: "P-3.9 Portable SMD LED Video Wall", image: "/images/FFC.jpeg", href: "#" },
   ]
 };
 
@@ -15,11 +17,10 @@ export default function Projects() {
   const TOTAL_PAGES = 5;
   const SLIDE_INTERVAL = 4000;
 
-  // 4 per page — repeat the 2 base projects to fill
+  // 3 per page - repeat the 3 base projects to fill
   const allProjects = useMemo(() => {
-    const base = projects.featured;
-    const page = [...base, ...base]; // 4 items per page
-    return Array(TOTAL_PAGES).fill(page).flat();
+    const base = projectsData.featured;
+    return Array(TOTAL_PAGES).fill(base).flat();
   }, []);
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -39,10 +40,10 @@ export default function Projects() {
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 md:mb-10">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-outfit font-semibold text-[#00AEEF] mb-2 sm:mb-3">
-            {projects.title}
+            {projectsData.title}
           </h2>
           <p className="text-xs sm:text-sm md:text-base font-outfit font-normal text-[#7a7f8e]">
-            {projects.subtitle}
+            {projectsData.subtitle}
           </p>
         </div>
 
@@ -54,24 +55,20 @@ export default function Projects() {
           >
             {Array.from({ length: TOTAL_PAGES }).map((_, pageIndex) => (
               <div key={pageIndex} className="flex-shrink-0 w-full flex flex-row gap-4 md:gap-6">
-                {allProjects.slice(pageIndex * 4, pageIndex * 4 + 4).map((project, i) => (
-                  <div key={`${pageIndex}-${i}`} className="group flex-1 min-w-0">
-                    <div className="relative overflow-hidden rounded-lg mb-3 shadow-sm">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="eager"
-                        className="w-full h-36 sm:h-40 md:h-44 lg:h-52 object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="text-center">
-                      <h3 className="text-xs sm:text-sm md:text-base font-outfit font-medium text-[#0f141e] mb-1 leading-tight">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs font-outfit font-normal text-[#7a7f8e]">
-                      {project.subtitle}
-                    </p>
-                    </div>
+                {allProjects.slice(pageIndex * 3, pageIndex * 3 + 3).map((project, i) => (
+                  <div key={`${pageIndex}-${i}`} className="flex-1 min-w-0">
+                    <BlogCard
+                      image={project.image}
+                      title={project.title}
+                      titleCentered={true}
+                      titleFontSize='text-3xl'
+                      titleColor='text-[#0F141E]'
+                      tagCentered={true}
+                      tagColor="text-[#7A7F8E] bg-white"
+                      tag={project.tag}
+                      href={project.href}
+                      tagFontSize='text-md'
+                    />
                   </div>
                 ))}
               </div>

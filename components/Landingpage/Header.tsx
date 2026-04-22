@@ -7,9 +7,8 @@ const logo = { src: "/images/Logo.svg", alt: "WISE VISION Logo" };
 const navLinks = [
   { name: "Home", href: "/", active: true },
   { name: "Products", href: "/products", hasDropdown: true },
-  { name: "Applications", href: "/#" },
   { name: "Blog", href: "/blog" },
-  { name: "Projects", href: "/#" },
+  { name: "Projects", href: "/projects" },
   { name: "Affiliations", href: "/affilations" },
   { name: "About Us", href: "/aboutUs" },
   { name: "Contact Us", href: "/contactUs" },
