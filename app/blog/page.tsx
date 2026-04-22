@@ -6,13 +6,13 @@ import BlogCard from '@/components/blog/blogCard';
 const blogs = [
   { image: '/images/Blog1.png', title: 'Max Series SMD Screen vs Traditional LED Screens – Whats the Difference?', tag: 'SMD SCREENS', href: '/blog/smd-screens' },
   { image: '/images/Blog2.png', title: 'How Much Does an SMD Advertising Screen Cost in 2026?', tag: 'Pricing Guide', href: '/blog/pricing-guide' },
-  { image: '/images/Blog3.png', title: 'Best Samsung Monitors in Pakistan 2026 – Specs, Features & Buying Guide', tag: 'Samsung', href: '/samsung' },
-  { image: '/images/Blog4.png', title: 'Everything You Need to Know About Monitors', tag: 'Monitors', href: '/monitors' },
-  { image: '/images/Blog5.png', title: 'Philips Interactive Board – Complete Overview', tag: 'Phillips', href: '/phillips' },
-  { image: '/images/Blog6.png', title: 'Philips Interactive Whiteboard for Schools & Offices in Pakistan', tag: 'Education', href: '/education' },
-  { image: '/images/Blog7.png', title: 'Top Industries Using SMD Screens in Pakistan', tag: 'Industry', href: '/industry' },
-  { image: '/images/Blog8.png', title: 'COB vs SMD LED Screens: Which Display Technology is Right for You?', tag: 'Technology', href: '/technology' },
-  { image: '/images/Blog9.png', title: 'Samsung Odyssey Gaming Monitor G40B – Full Review', tag: 'Samsung', href: '/samsung-2' },
+  { image: '/images/Blog3.png', title: 'Best Samsung Monitors in Pakistan 2026 – Specs, Features & Buying Guide', tag: 'Samsung', href: '/blog/samsung-1' },
+  { image: '/images/Blog4.png', title: 'Everything You Need to Know About Monitors', tag: 'Monitors', href: '/blog/monitors' },
+  { image: '/images/Blog5.png', title: 'Philips Interactive Board – Complete Overview', tag: 'Phillips', href: '/blog/phillips' },
+  { image: '/images/Blog6.png', title: 'Philips Interactive Whiteboard for Schools & Offices in Pakistan', tag: 'Education', href: '/blog/education' },
+  { image: '/images/Blog7.png', title: 'Top Industries Using SMD Screens in Pakistan', tag: 'Industry', href: '/blog/industry' },
+  { image: '/images/Blog8.png', title: 'COB vs SMD LED Screens: Which Display Technology is Right for You?', tag: 'Technology', href: '/blog/technology' },
+  { image: '/images/Blog9.png', title: 'Samsung Odyssey Gaming Monitor G40B – Full Review', tag: 'Samsung', href: '/blog/samsung-2' },
 ];
 
 export default function BlogPage() {
@@ -21,7 +21,7 @@ export default function BlogPage() {
       <Header />
 
       <Banner
-        bannerImage="/images/BannerAboutUs.png"
+        bannerImage="/images/bannerBlog.jpeg"
         bannerAlt="Blog Banner"
         title="Our Blogs"
         description="Stay updated with Wise Vision's latest insights on digital signage trends, industry innovations, and project case studies."

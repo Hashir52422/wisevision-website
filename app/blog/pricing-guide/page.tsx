@@ -21,7 +21,7 @@ const articleData = {
     }
   ],
   previousArticleLink: "/blog/smd-screens",
-  nextArticleLink: "/blog/samsung",
+  nextArticleLink: "/blog/samsung-1",
   otherArticles: [
     { image: '/images/1.png', title: 'Max Series SMD Screen vs Traditional LED Screens - What\'s the Difference?', href: '#' },
     { image: '/images/1.png', title: 'Max Series SMD Screen vs Traditional LED Screens - What\'s the Difference?', href: '#' },

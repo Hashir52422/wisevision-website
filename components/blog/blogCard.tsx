@@ -18,7 +18,7 @@ export default function BlogCard({ image, imageAlt = '', title, tag, href = '#' 
             src={image}
             alt={imageAlt || title}
             fill
-            className="object-cover rounded-t-2xl"
+            className="object-fill rounded-t-2xl"
           />
         </div>
         <div className="p-4">
