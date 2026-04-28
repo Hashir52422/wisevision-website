@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { client } from '@/lib/sanity'
+import { UserButton, SignInButton, SignOutButton, useUser } from '@clerk/nextjs'
 
 interface Product {
   _id: string
@@ -30,6 +31,7 @@ const categorySubcategories = {
 }
 
 export default function AdminProductsPage() {
+  const { isSignedIn, user } = useUser()
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState<Partial<Product>>({})
@@ -487,12 +489,37 @@ export default function AdminProductsPage() {
     )
   }
 
+  if (!isSignedIn) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[#08425D] mb-4">Authentication Required</h1>
+          <p className="text-gray-600 mb-6">Please sign in to access the admin dashboard</p>
+          <SignInButton mode="modal">
+            <button className="bg-[#08425D] text-white px-6 py-2 rounded-lg font-outfit font-medium hover:bg-[#063247] transition-colors">
+              Sign In
+            </button>
+          </SignInButton>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-[#08425D]">Products Management</h1>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">Welcome, {user?.firstName || 'Admin'}</span>
+              <UserButton />
+              <SignOutButton>
+                <button className="bg-red-500 text-white px-3 py-1 rounded-lg text-sm font-medium hover:bg-red-600 transition-colors">
+                  Logout
+                </button>
+              </SignOutButton>
+            </div>
             <button
               onClick={handleDebugAllProductDetails}
               className="bg-orange-500 text-white px-4 py-2 rounded-lg font-outfit font-medium hover:bg-orange-600 transition-colors text-sm"
