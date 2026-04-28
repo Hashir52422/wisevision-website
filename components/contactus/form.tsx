@@ -1,4 +1,4 @@
-  import Image from "next/image"
+import Image from "next/image"
 import locationIcon from '@/public/images/location.png';
 import emailIcon from '@/public/images/email.png';
 import phoneIcon from '@/public/images/phone.png';

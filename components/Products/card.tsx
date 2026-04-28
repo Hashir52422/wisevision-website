@@ -7,9 +7,10 @@ interface ProductCardProps {
   title: string;
   subtitle: string;
   href?: string;
+  productId?: string;
 }
 
-export default function ProductCard({ image, title, subtitle, href }: ProductCardProps) {
+export default function ProductCard({ image, title, subtitle, href, productId }: ProductCardProps) {
   const content = (
     <div className="flex items-center justify-center p-1">
       <div className="product-card">
@@ -101,5 +102,7 @@ export default function ProductCard({ image, title, subtitle, href }: ProductCar
     </div>
   );
 
-  return href ? <Link href={href}>{content}</Link> : <>{content}</>;
+  // If productId is provided, link to product detail page, otherwise use href or no link
+  const linkHref = productId ? `/products/${productId}` : href;
+  return linkHref ? <Link href={linkHref}>{content}</Link> : <>{content}</>;
 }

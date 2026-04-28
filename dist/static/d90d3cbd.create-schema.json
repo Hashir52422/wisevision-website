@@ -1,0 +1,345 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "name": "titleInternal",
+        "type": "string",
+        "title": "Product Title"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "SMD Screens indoor",
+              "value": "SMD Screens indoor"
+            },
+            {
+              "title": "SMD Screens outdoor",
+              "value": "SMD Screens outdoor"
+            },
+            {
+              "title": "COB led display",
+              "value": "COB led display"
+            },
+            {
+              "title": "Digital standee",
+              "value": "Digital standee"
+            },
+            {
+              "title": "Digital podium",
+              "value": "Digital podium"
+            },
+            {
+              "title": "samsung display",
+              "value": "samsung display"
+            },
+            {
+              "title": "phillips display",
+              "value": "phillips display"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "SMD Screens indoor",
+                  "SMD Screens outdoor",
+                  "COB led display",
+                  "Digital standee",
+                  "Digital podium",
+                  "samsung display",
+                  "phillips display"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "category",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "subcategory",
+        "type": "string",
+        "title": "Sub Category"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "image",
+        "type": "string",
+        "title": "Product Image Path"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "sizes",
+        "type": "string"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "features",
+        "type": "array"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "initialValue": "#",
+        "name": "href",
+        "type": "string",
+        "title": "Product Detail Page URL"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "name": "value",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "specs",
+        "type": "array",
+        "title": "Specifications"
+      },
+      {
+        "name": "inches",
+        "type": "string",
+        "title": "Size/Inches"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Product"
+      }
+    ],
+    "name": "product",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "productId",
+        "type": "string",
+        "title": "Product ID"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "bannerTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "bannerDescription",
+        "type": "text"
+      },
+      {
+        "name": "bannerImage",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "productImage",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "productTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "productDescription",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "productSpecification",
+        "type": "text"
+      },
+      {
+        "initialValue": "2026-04-24T13:11:48.374Z",
+        "name": "createdAt",
+        "type": "datetime"
+      },
+      {
+        "initialValue": "2026-04-24T13:11:48.374Z",
+        "name": "updatedAt",
+        "type": "datetime"
+      }
+    ],
+    "name": "productDetails",
+    "type": "document"
+  }
+]

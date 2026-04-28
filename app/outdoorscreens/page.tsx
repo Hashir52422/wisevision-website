@@ -1,8 +1,63 @@
+'use client'
 import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
 import Products from '@/components/Products/productsView';
+import { useState, useEffect } from 'react';
+
+interface Product {
+  _id: string
+  category: string
+  subcategory: string
+  title: string
+  subtitle: string
+  image: string
+  name?: string
+  sizes?: string
+  features?: string[]
+  description?: string
+  href?: string
+  specs?: Array<{ label: string; value: string }>
+  inches?: string
+  featured: boolean
+  publishedAt: string
+}
 
 export default function OutdoorScreensPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products/by-category?category=SMD%20Screens%20outdoor');
+        const data = await response.json();
+        setProducts(data.products || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter products by subcategory
+  const moduleSeriesProducts = products.filter(p => p.subcategory === 'Module Series');
+  const premiumSeriesProducts = products.filter(p => p.subcategory === 'Premium Series');
+  const rentalSeriesProducts = products.filter(p => p.subcategory === 'Rental Series');
+
+  // Transform products to match the expected format
+  const transformProduct = (product: Product) => ({
+    image: product.image,
+    title: product.title,
+    subtitle: product.subtitle || '',
+    href: product.href || '#',
+    ...(product.name && { name: product.name }),
+    ...(product.features && { features: product.features }),
+    ...(product.sizes && { sizes: [product.sizes] }) // Convert string to array
+  });
+
   const outdoorSMDData = {
     bannerImage: "/images/Productbanner.jpeg",
     bannerAlt: "Outdoor SMDs Banner",
@@ -11,94 +66,9 @@ export default function OutdoorScreensPage() {
     sectionHeading: "Module Series",
     sectionHeadingP: "Premium Series",
     sectionHeadingR: "Rental Series",
-    products: [
-      {
-        image: "/images/ModuleSeries.png",
-        title: "P-3 SMD Screen",
-        subtitle: "Outdoor",
-        href: "/products/p3-smd-screen"
-      },
-      {
-        image: "/images/ModuleSeries.png",
-        title: "P-4 SMD Screen",
-        subtitle: "Outdoor",
-        href: "/products/outdoorscreens/p4-smd"
-      },
-      {
-        image: "/images/ModuleSeries.png",
-        title: "P-5 SMD Screen",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/ModuleSeries.png",
-        title: "P-6 SMD Screen",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/ModuleSeries.png",
-        title: "P-8 SMD Screen",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/ModuleSeries.png",
-        title: "P-10 SMD Screen",
-        subtitle: "Outdoor"
-      },
-    ],
-    productsP: [
-      {
-        image: "/images/smartboxseries.png",
-        title: "Smart Box Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/transparentseries.png",
-        title: "Transparent Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/ultrafineseries.png",
-        title: "Ultra Fine Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/ironcabinet.png",
-        title: "Iron Cabinet Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/creativeseries.png",
-        title: "Creative Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/digitalpolestreamer.png",
-        title: "Digital Pole Streamer",
-        subtitle: "Outdoor"
-      },
-    ],
-    productsR: [
-      {
-        image: "/images/Dazzle.png",
-        title: "Dazzel IV Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/shinproseries.png",
-        title: "Shin Pro Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/pilotproseries.png",
-        title: "Pilot Pro Series",
-        subtitle: "Outdoor"
-      },
-      {
-        image: "/images/Eswanseries.png",
-        title: "E-Swan Series",
-        subtitle: "Outdoor"
-      },
-    ]
+    products: moduleSeriesProducts.map(transformProduct),
+    productsP: premiumSeriesProducts.map(transformProduct),
+    productsR: rentalSeriesProducts.map(transformProduct),
   };
 
   return (

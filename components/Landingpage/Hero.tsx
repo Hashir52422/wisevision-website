@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import GetQuote from '@/components/GetQuote';
 
 const heroContent = {
   title: "High-Resolution SMD Video Walls",
@@ -61,8 +63,19 @@ const slides: Slide[] = [
 // Track = [...slides, slides[0]] — clone of first slide at the end for seamless loop
 const total = slides.length + 1;
 
-function SlidePanel({ slide }: { slide: Slide }) {
+function SlidePanel({ slide, index, onGetQuoteClick }: { slide: Slide; index: number; onGetQuoteClick: () => void }) {
   const isCenter = slide.textAlign === 'center';
+  
+  // Determine button color based on slide index
+  const getButtonColor = (idx: number) => {
+    if (idx === 0) return '#08425D'; // First slide
+    if (idx === 1) return '#14A4E9'; // Second slide
+    return '#007bff'; // Default for other slides
+  };
+  
+  const buttonColor = getButtonColor(index);
+  const hoverColor = index === 0 ? '#063040' : index === 1 ? '#1188cc' : '#0056b3';
+  
   return (
     <div
       className="h-full relative flex-shrink-0"
@@ -88,7 +101,13 @@ function SlidePanel({ slide }: { slide: Slide }) {
             {slide.subtitle}
           </p>
           {slide.showCta && (
-            <button className="bg-[#007bff] text-white font-outfit font-semibold py-2 px-5 sm:py-3 sm:px-7 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 text-sm">
+            <button 
+              className="text-white font-outfit font-semibold py-2 px-5 sm:py-3 sm:px-7 rounded-lg shadow-lg transition duration-300 text-sm"
+              style={{ backgroundColor: buttonColor }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = hoverColor}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = buttonColor}
+              onClick={onGetQuoteClick}
+            >
               {slide.cta}
             </button>
           )}
@@ -110,6 +129,11 @@ function SlidePanel({ slide }: { slide: Slide }) {
 export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [animated, setAnimated] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -142,13 +166,13 @@ export default function Hero() {
             width: `${total * 100}%`,
           }}
         >
-          {slides.map((slide, i) => <SlidePanel key={i} slide={slide} />)}
+          {slides.map((slide, i) => <SlidePanel key={i} slide={slide} index={i} onGetQuoteClick={() => setShowModal(true)} />)}
           {/* Clone of first slide */}
-          <SlidePanel key="clone" slide={slides[0]} />
+          <SlidePanel key="clone" slide={slides[0]} index={0} onGetQuoteClick={() => setShowModal(true)} />
         </div>
-
-
       </div>
+      {/* Get Quote Modal */}
+      {showModal && <GetQuote onClose={closeModal} />}
     </section>
   );
 }

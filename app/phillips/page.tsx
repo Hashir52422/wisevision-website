@@ -1,8 +1,59 @@
+'use client'
 import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
 import Products from '@/components/Products/productsView';
+import { useState, useEffect } from 'react';
 
-export default function phillips() {
+interface Product {
+  _id: string
+  category: string
+  subcategory: string
+  title: string
+  subtitle: string
+  image: string
+  name?: string
+  sizes?: string
+  features?: string[]
+  description?: string
+  href?: string
+  specs?: Array<{ label: string; value: string }>
+  inches?: string
+  featured: boolean
+  publishedAt: string
+}
+
+export default function PhillipsPage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products/by-category?category=phillips%20display');
+        const data = await response.json();
+        setProducts(data.products || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Transform products to match the expected format
+  const transformProduct = (product: Product) => ({
+    image: product.image,
+    title: product.title,
+    subtitle: product.subtitle || '',
+    href: product.href || '#',
+    id: product._id,
+    ...(product.name && { name: product.name }),
+    ...(product.features && { features: product.features }),
+    ...(product.sizes && { sizes: [product.sizes] }) // Convert string to array
+  });
+
   const phillipsData = {
     bannerImage: "/images/Philipsbanner.jpeg",
     bannerAlt: "Philips Banner",
@@ -15,45 +66,12 @@ export default function phillips() {
       { label: "All Products", targetId: "all" },
       { label: "Interactive Touch Display", targetId: "module" },
       { label: "Hospitality TV", targetId: "premium" },
-
     ],
-    products: [
-      {
-        image: "/images/PhilipsInteractiveScreen.png",
-        title: "Philips E-Line Interactive Screen",
-        subtitle: "65’’ 75’’ 86’’",
-        href: "/products/philipsE-line"
-      },
-      {
-        image: "/images/1.png",
-        title: "Philips T-Line Touch Sc",
-        subtitle: "24’’",
-        href: "/products/outdoorscreens/p4-smd"
-      },
-      {
-        image: "/images/2.png",
-        title: "Philips T-Line Touch Display",
-        subtitle: "32’’ 55’’"
-      },
-    ],
-    productsS: [
-      {
-        image: "/images/PhilipsHotelTV.png",
-        title: "Hospitality TV",
-        subtitle: "",
-        name: "Philips Hotel TV",
-        sizes: ["HFL5214U/97"],
-        features: [
-          "Quick and easy to use",
-          "Clear picture and sound",
-          "Save energy and costs",
-          "Easy to connect devices like phones and USB "
-        ]
-      }
-      
-    ],
-
+    products: products.filter(product => product.subcategory !== 'Hospitality TV').map(transformProduct),
+    productsS: products.filter(product => product.subcategory === 'Hospitality TV').map(transformProduct)
   };
+
+  console.log('Phillips products subcategories:', products.map(product => product.subcategory));
 
   return (
     <div className="min-h-screen">

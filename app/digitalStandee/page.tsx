@@ -1,8 +1,64 @@
+'use client'
 import Header from '@/components/Landingpage/Header';
 import Footer from '@/components/Landingpage/Footer';
 import Products from '@/components/Products/productsView';
+import { useState, useEffect } from 'react';
 
-export default function digitalStandee() {
+interface Product {
+  _id: string
+  category: string
+  subcategory: string
+  title: string
+  subtitle: string
+  image: string
+  name?: string
+  sizes?: string
+  features?: string[]
+  description?: string
+  href?: string
+  specs?: Array<{ label: string; value: string }>
+  inches?: string
+  featured: boolean
+  publishedAt: string
+}
+
+export default function DigitalStandeePage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products/by-category?category=Digital%20standee');
+        const data = await response.json();
+        setProducts(data.products || []);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Filter products by subcategory
+  const digitalStandeeProducts = products.filter(p => p.category === 'Digital standee');
+
+  console.log('Digital Standee products subcategories:', products.map(product => product.subcategory));
+
+  // Transform products to match the expected format
+  const transformProduct = (product: Product) => ({
+    image: product.image,
+    title: product.title,
+    subtitle: product.subtitle || '',
+    href: product.href || '#',
+    id: product._id,
+    ...(product.name && { name: product.name }),
+    ...(product.features && { features: product.features }),
+    ...(product.sizes && { sizes: [product.sizes] }) // Convert string to array
+  });
+
   const digitalStandee = {
     bannerImage: "/images/StandeeBanner.jpeg",
     bannerAlt: "Digital Standee Banner",
@@ -11,53 +67,12 @@ export default function digitalStandee() {
     bannerTextColor: "text-black",
     navigationButtons: [
       { label: "All Products", targetId: "all" },
-      { label: "Indoor Standee", targetId: "indoor-smd-digital-standee" },
-      { label: "Samsung Touch Standee", targetId: "samsung-touch-digital-standee" },
       { label: "Samsung Non-Touch Standee", targetId: "samsung-non-touch-digital-standee" },
-
+      { label: "Samsung Touch Digital Standee", targetId: "samsung-touch-digital-standee" },
+      { label: "Indoor SMD Digital Standee", targetId: "indoor-smd-digital-standee" },
     ],
-  
-    productsS: [
-      {
-        image: "/images/IndoorStandee.png",
-        title: "Indoor SMD Digital Standee",
-        subtitle: "",
-        name: "SMD Digital Standee",
-        href: "/products/indoor-digital-standee",
-        features: [
-          "Standard Screen Size",
-          "Backward Foldable Design",
-          "Plug-and-play Design",
-          "Multi-screen Seamless Splicing"
-        ]
-      },
-          {
-        image: "/images/TouchStandee.png",
-        title: "Samsung Touch Digital Standee",
-        subtitle: "",
-        name: "Samsung Touch Standee",
-        features: [
-          "Interactive Touch Experience",
-          "Smart Content Management",
-          "Stunning Visual Clarity",
-          "Customized Engagement Options"
-        ]
-      },
-          {
-        image: "/images/Non-TouchStandee.png",
-        title: "Samsung Non-Touch Digital Standee",
-        subtitle: "",
-        name: "Samsung Non-Touch Standee",
-        features: [
-          "Brilliant Display Quality",
-          "Effortless Remote Control",
-          "Sleek Modern Design",
-          "Reliable 24/7 Performance"
-        ]
-      }
-      
-    ],
-
+    products: [], // Combined all products for "All Products" section
+    productsS: digitalStandeeProducts.map(transformProduct),
   };
 
   return (
