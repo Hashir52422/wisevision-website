@@ -633,14 +633,17 @@ export default function AdminProductsPage() {
                     />
                     <p className="text-xs text-gray-500">Allowed formats: PNG, JPG, JPEG (Max 5MB)</p>
                     {uploading && <p className="text-sm text-blue-600">Uploading...</p>}
-                    {uploadedImage && (
+                    {(uploadedImage || formData.image) && (
                       <div className="mt-2">
                         <img 
-                          src={uploadedImage} 
+                          src={uploadedImage || formData.image} 
                           alt="Preview" 
                           className="w-32 h-32 object-cover rounded-lg border"
                         />
-                        <p className="text-xs text-gray-600 mt-1">{uploadedImage}</p>
+                        <p className="text-xs text-gray-600 mt-1">
+                          {uploadedImage || formData.image}
+                          {uploadedImage && <span className="text-green-600 ml-2">(New Upload)</span>}
+                        </p>
                       </div>
                     )}
                   </div>
@@ -889,47 +892,68 @@ export default function AdminProductsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categoryProducts.map((product: Product) => (
                   <div key={product._id} className="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
-                    <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-lg font-outfit font-semibold text-[#08425D]">{product.title}</h3>
-                      <div className="flex gap-2 flex-wrap">
-                        <button
-                          onClick={() => handleEdit(product)}
-                          className="text-blue-600 hover:text-blue-800 text-sm"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(product._id)}
-                          className="text-red-600 hover:text-red-800 text-sm"
-                        >
-                          Delete
-                        </button>
-                        <button
-                          onClick={() => handleEditProductDetails(product)}
-                          className="text-purple-600 hover:text-purple-800 text-sm"
-                        >
-                          Edit Details
-                        </button>
-                        <button
-                          onClick={() => handleDeleteProductDetails(product)}
-                          className="text-orange-600 hover:text-orange-800 text-sm"
-                        >
-                          Delete Details
-                        </button>
-                        <button
-                          onClick={() => handleAddProductDetails(product)}
-                          className="text-green-600 hover:text-green-800 text-sm"
-                        >
-                          Add Details
-                        </button>
+                    {/* Image and Buttons Row */}
+                    <div className="flex gap-4 items-start mb-4">
+                      {/* Product Image */}
+                      <img 
+                        src={product.image || '/images/placeholder.jpg'} 
+                        alt={product.title || 'Product image'}
+                        className="w-32 h-32 object-fit rounded-lg border border-gray-200"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/images/placeholder.jpg';
+                        }}
+                      />
+                      
+                      {/* Buttons Container */}
+                      <div className="flex gap-12 ml-12 mt-8">
+                        {/* First Column - Basic Actions */}
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => handleEdit(product)}
+                            className="text-blue-600 hover:text-blue-800 text-sm whitespace-nowrap"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(product._id)}
+                            className="text-red-600 hover:text-red-800 text-sm whitespace-nowrap"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                        {/* Second Column - Details Actions */}
+                        <div className="flex flex-col gap-2">
+                          <button
+                            onClick={() => handleEditProductDetails(product)}
+                            className="text-purple-600 hover:text-purple-800 text-sm whitespace-nowrap"
+                          >
+                            Edit Details
+                          </button>
+                          <button
+                            onClick={() => handleDeleteProductDetails(product)}
+                            className="text-orange-600 hover:text-orange-800 text-sm whitespace-nowrap"
+                          >
+                            Delete Details
+                          </button>
+                          <button
+                            onClick={() => handleAddProductDetails(product)}
+                            className="text-green-600 hover:text-green-800 text-sm whitespace-nowrap"
+                          >
+                            Add Details
+                          </button>
+                        </div>
                       </div>
                     </div>
                     
-                    <p className="text-sm text-gray-600 mb-2">{product.category} - {product.subcategory}</p>
-                    <p className="text-sm text-gray-700 mb-2">{product.description}</p>
-                    {product.inches && <p className="text-sm text-gray-500 mb-2">Size: {product.inches}</p>}
-                    
-                                      </div>
+                    {/* Product Information Below */}
+                    <div>
+                      <h3 className="text-lg font-outfit font-semibold text-[#08425D] mb-2">{product.title}</h3>
+                      <p className="text-sm text-gray-600 mb-2">{product.category} - {product.subcategory}</p>
+                      <p className="text-sm text-gray-700 mb-2">{product.description}</p>
+                      {product.inches && <p className="text-sm text-gray-500 mb-2">Size: {product.inches}</p>}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
