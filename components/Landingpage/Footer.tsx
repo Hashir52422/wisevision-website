@@ -10,11 +10,10 @@ const footerDescription = "WISE VISION is Pakistan's premier digital signage sol
 export default function Footer() {
   const links = [
     { name: 'Home',         href: '/' },
-    { name: 'Affiliations', href: '/affiliations' },
-    { name: 'Products',     href: '/products' },
-    { name: 'About Us',     href: '/about' },
-    { name: 'Applications', href: '/applications' },
-    { name: 'Contact Us',   href: '/contact' },
+    { name: 'Affiliations', href: '/affilations' },
+    { name: 'Products',     href: '/indoorscreens' },
+    { name: 'About Us',     href: '/aboutUs' },
+    { name: 'Contact Us',   href: '/contactUs' },
     { name: 'Blog',         href: '/blog' },
     { name: 'Projects',     href: '/projects' },
   ];
@@ -92,20 +91,21 @@ export default function Footer() {
               {/* Social Icons */}
               <div className="flex gap-2 sm:gap-3">
                 <a
-                  href="#"
+                  href="http://linkedin.com/company/wise-vision-official/" target='_blank'
                   className="w-8 h-8 sm:w-9 sm:h-9 bg-[#14A4E9] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity duration-200"
                   aria-label="LinkedIn"
                 >
                   <span className="text-white text-sm font-bold">in</span>
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/Wisevisionofficial" target='_blank'
                   className="w-8 h-8 sm:w-9 sm:h-9 bg-[#14A4E9] rounded-full flex items-center justify-center hover:opacity-80 transition-opacity duration-200"
                   aria-label="Facebook"
                 >
                   <span className="text-white text-sm font-bold">f</span>
                 </a>
-          
+                   
+                   <a href='https://www.instagram.com/wisevision_official?utm_source=qr&igsh=MWkyZ3R1cWN0ZjRhYQ==' target='_blank'>
                   <Image 
                     src={instagramIcon} 
                     alt="Instagram" 
@@ -113,6 +113,7 @@ export default function Footer() {
                     height={8}
                     className="w-8 h-8 sm:w-9 sm:h-9"
                   />
+                  </a>
               
               </div>
             </div>
