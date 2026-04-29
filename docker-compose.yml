@@ -1,0 +1,16 @@
+services:
+  nextjs-app:
+    build:
+      context: .
+      args:
+        # These are passed DURING build time
+        - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_YXNzdXJlZC1sbGFtYS03MC5jbGVyay5hY2NvdW50cy5kZXYk
+        - NEXT_PUBLIC_SANITY_PROJECT_ID=r397y8o5
+        - NEXT_PUBLIC_SANITY_DATASET=production
+    ports:
+      - "3000:3000"
+    environment:
+      # These are used DURING runtime (Server-side secrets)
+      - CLERK_SECRET_KEY=sk_test_7dM4xS59zMvGdyBfGN6mlRs4SXHvrmopu0unyGNdw9
+      - SANITY_API_TOKEN=skZjMn4FSegPK01Kh7SydlNi6FQwZYv5Cnd4cHqoLINbAskcybTh8BIa6aNtxNz2ohMeHnSo7rq0Ou1kwmooqU5XgLJvPsSh3RT6RdosvpnrbQqSr06fQgFc0CDA5N3MujErA6RamF7VoF2WHq9TIm6KojlGn1k9mn2V4wyK2GIgS2fBlvBZ
+    restart: always

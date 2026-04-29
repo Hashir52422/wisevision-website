@@ -1,19 +1,25 @@
 import { createClient } from '@sanity/client'
 
-// Create a read-only client for fetching data
+// Using the NEXT_PUBLIC prefix ensures these can be baked in during Docker build
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+const token = process.env.SANITY_API_TOKEN
+
 export const client = createClient({
-  projectId: process.env.SANITY_PROJECT_ID || 'your-project-id',
-  dataset: process.env.SANITY_DATASET || 'production',
-  useCdn: false, // Disable CDN to avoid CORS issues
+  projectId,
+  dataset,
   apiVersion: '2024-03-19',
-  token: process.env.SANITY_API_TOKEN, // Use token for all requests
+  useCdn: false, 
+  token,
+  // perspective: 'published' tells Sanity this is a standard server-to-server request
+  perspective: 'published',
+  stega: { enabled: false }
 })
 
-// Create a client with token for write operations
 export const writeClient = createClient({
-  projectId: process.env.SANITY_PROJECT_ID || 'your-project-id',
-  dataset: process.env.SANITY_DATASET || 'production',
-  useCdn: false, // Disable CDN for write operations
+  projectId,
+  dataset,
   apiVersion: '2024-03-19',
-  token: process.env.SANITY_API_TOKEN,
+  useCdn: false,
+  token,
 })
