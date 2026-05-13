@@ -119,12 +119,15 @@ export default function ProductDetail({
                         {/* Left column */}
                         <ul className="space-y-2 flex-1">
                           {leftSpecLines.map((line, index) => {
-                            const parts = line.split(':');
-                            const label = parts[0]?.trim() || '';
-                            const value = parts[1]?.trim() || line;
+                            const colonIndex = line.indexOf(':');
+                            const hasColon = colonIndex !== -1;
+                            const label = hasColon ? line.slice(0, colonIndex).trim() : '';
+                            const value = hasColon ? line.slice(colonIndex + 1).trim() : line.trim();
                             return (
                               <li key={`left-${index}`} className="flex items-baseline gap-1 font-outfit text-[14px] md:text-[15px]">
-                                <span className="text-[#999999] before:content-['•'] before:mr-2">{value}</span>
+                                <span className="text-[#999999] before:content-['•'] before:mr-2">
+                                  {label && <span className="text-[#0f141e] font-semibold">{label}: </span>}{value}
+                                </span>
                               </li>
                             );
                           })}
@@ -132,12 +135,15 @@ export default function ProductDetail({
                         {/* Right column */}
                         <ul className="space-y-2 flex-1">
                           {rightSpecLines.map((line, index) => {
-                            const parts = line.split(':');
-                            const label = parts[0]?.trim() || '';
-                            const value = parts[1]?.trim() || line;
+                            const colonIndex = line.indexOf(':');
+                            const hasColon = colonIndex !== -1;
+                            const label = hasColon ? line.slice(0, colonIndex).trim() : '';
+                            const value = hasColon ? line.slice(colonIndex + 1).trim() : line.trim();
                             return (
                               <li key={`right-${index}`} className="flex items-baseline gap-1 font-outfit text-[14px] md:text-[15px]">
-                                <span className="text-[#999999] before:content-['•'] before:mr-2">{value}</span>
+                                <span className="text-[#999999] before:content-['•'] before:mr-2">
+                                  {label && <span className="text-[#0f141e] font-semibold">{label}: </span>}{value}
+                                </span>
                               </li>
                             );
                           })}

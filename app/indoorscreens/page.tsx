@@ -53,6 +53,7 @@ export default function IndoorScreensPage() {
     title: product.title,
     subtitle: product.subtitle || '',
     href: product.href || '#',
+    id: product._id,
     ...(product.name && { name: product.name }),
     ...(product.features && { features: product.features }),
     ...(product.sizes && { sizes: [product.sizes] }) // Convert string to array
