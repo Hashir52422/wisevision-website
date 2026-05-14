@@ -1,8 +1,12 @@
+'use client'
+import { useState } from "react";
 import Image from "next/image"
 import locationIcon from '@/public/images/location.png';
 import emailIcon from '@/public/images/email.png';
 import phoneIcon from '@/public/images/phone.png';
 import instagramIcon from '@/public/images/Instagram.svg';
+
+const WHATSAPP_NUMBER = '923280344789'; // 03165994525 in international format
 
 interface ContactFormProps {
   title?: string;
@@ -25,6 +29,28 @@ export default function ContactForm({
   formTitle = "Get In Touch",
   showSocialMedia = true
 }: ContactFormProps) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    contact: '',
+    requirement: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message =
+      `Hello, I would like to get a quote.\n\n` +
+      `*Name:* ${formData.name}\n` +
+      `*Email:* ${formData.email}\n` +
+      `*Contact:* ${formData.contact}\n` +
+      `*Requirement:* ${formData.requirement || 'Not specified'}`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="flex flex-col lg:flex-row w-full gap-8 items-start">
       {/* Left Section: Text and Contact Info */}
@@ -77,7 +103,7 @@ export default function ContactForm({
               />
             </div>
             <div>
-              <p className="font-outfit text-[#08425D] font-medium">Phone Number</p>
+              <p className="font-outfit text-[#08425D] font-medium">Whatssapp Phone Number</p>
               <p className="font-outfit text-[#9B9B9B]">{phone}</p>
             </div>
           </div>
@@ -114,12 +140,16 @@ export default function ContactForm({
 
       {/* Right Section: Form */}
       <div className="w-full lg:w-1/2 flex justify-end">
-        <form className="bg-white rounded-xl border-1 border-[#9B9B9B] p-6 space-y-4 w-full max-w-[600px]">
+        <form onSubmit={handleSubmit} className="bg-white rounded-xl border-1 border-[#9B9B9B] p-6 space-y-4 w-full max-w-[600px]">
           <div>
             <label className="block text-black font-outfit font-medium mb-2">Name <span className="text-red-500">*</span></label>
             <input
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="enter your name"
+              required
               className="text-[#7A7F8E] w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -128,16 +158,24 @@ export default function ContactForm({
             <label className="block text-black font-outfit font-medium mb-2">Email <span className="text-red-500">*</span></label>
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="enter your email"
+              required
               className="text-[#7A7F8E] w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
           <div>
-            <label className="block text-black font-outfit font-medium mb-2">Contact Number <span className="text-red-500">*</span></label>
+            <label className="block text-black font-outfit font-medium mb-2">Whatsapp Contact Number <span className="text-red-500">*</span></label>
             <input
               type="tel"
+              name="contact"
+              value={formData.contact}
+              onChange={handleChange}
               placeholder="+92 222-4444-333"
+              required
               className="text-[#7A7F8E] w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
@@ -145,6 +183,9 @@ export default function ContactForm({
           <div>
             <label className="block text-black font-outfit font-medium mb-2">Your Requirement</label>
             <textarea
+              name="requirement"
+              value={formData.requirement}
+              onChange={handleChange}
               className="text-[#7A7F8E] w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               rows={4}
               placeholder="Hi, I want to know about Indoor SMD's....."
@@ -153,7 +194,7 @@ export default function ContactForm({
 
           <button
             type="submit"
-            className="w-[150px] bg-[#08425D] text-white font-outfit font-semibold py-3 px-6 rounded-lg "
+            className="w-[150px] bg-[#08425D] text-white font-outfit font-semibold py-3 px-6 rounded-lg"
           >
             Submit
           </button>

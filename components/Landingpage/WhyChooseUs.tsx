@@ -57,7 +57,7 @@ export default function WhyChooseUs() {
                 <h3 className="text-lg sm:text-xl font-outfit font-semibold text-gray-900 mb-3 text-left">
                   {feature.title}
                 </h3>
-                <p className="text-sm font-outfit font-normal text-gray-600 leading-relaxed text-justify">
+                <p className="text-sm font-outfit font-normal text-gray-600 leading-relaxed text-left">
                   {feature.description}
                 </p>
               </div>
