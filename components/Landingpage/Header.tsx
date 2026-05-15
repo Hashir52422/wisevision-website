@@ -148,9 +148,9 @@ export default function Header() {
   return (
     <header className="relative z-50">
       {/* Top Bar */}
-      <div className="bg-[#14a4e9] h-12 sm:h-14 md:h-16 overflow-hidden">
+      <div className="bg-[#14a4e9] py-2 sm:h-14 md:h-16 overflow-hidden">
         <div className="container mx-auto px-4 h-full flex items-center justify-center">
-          <p className="text-white text-sm sm:text-base md:text-lg lg:text-[22px] font-outfit font-normal text-center px-2">
+          <p className="text-white text-sm sm:text-base md:text-lg lg:text-[22px] font-outfit font-normal text-center px-2 py-1 sm:py-0">
             {topBar}
           </p>
         </div>

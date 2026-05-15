@@ -56,7 +56,7 @@ export default function ProjectsPage() {
           </div>
 
           {/* Video - Same size as banner component */}
-            <div className="w-[1450px] h-[340px] md:h-[600px] rounded-lg overflow-hidden mb-12 bg-black">
+            <div className="w-full h-[220px] sm:h-[340px] md:h-[480px] lg:h-[600px] rounded-lg overflow-hidden mb-12 bg-black">
               <video 
                 className="w-full h-full object-cover"
                 autoPlay={true}

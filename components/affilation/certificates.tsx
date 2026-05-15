@@ -25,31 +25,31 @@
           
           {/* Certifications Section */}
           <div className="text-center">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 mb-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 mb-8">
               {/* Lampro Certificate */}
               <div className="flex flex-col items-center">
-                <div className="w-90 h-90 md:w-150 md:h-150 p-4 flex items-center justify-center">
+                <div className="w-full max-w-[320px] md:max-w-[420px] p-4 flex items-center justify-center">
                   <img
                     src="/images/lamproo.jpg"
                     alt="Lampro Certificate"
-                    className="max-w-full max-h-full object-contain border-2 border-black"
+                    className="w-full h-auto object-contain border-2 border-black"
                   />
                 </div>
-                <p className="text-[30px] font-outfit font-semibold text-gray-900 mt-1">
+                <p className="text-xl sm:text-2xl md:text-[30px] font-outfit font-semibold text-gray-900 mt-1 text-center">
                   Lampro (Unilumin Group)
                 </p>
               </div>
 
               {/* CA Certificate */}
               <div className="flex flex-col items-center">
-                <div className="w-90 h-90 md:w-150 md:h-150 p-4 flex items-center justify-center">
+                <div className="w-full max-w-[320px] md:max-w-[420px] p-4 flex items-center justify-center">
                   <img
                     src="/images/CA.jpg"
                     alt="CA Certificate"
-                    className="max-w-full max-h-full object-contain border-2 border-black"
+                    className="w-full h-auto object-contain border-2 border-black"
                   />
                 </div>
-                <p className="text-[30px] font-outfit font-semibold text-gray-900 mt-1">
+                <p className="text-xl sm:text-2xl md:text-[30px] font-outfit font-semibold text-gray-900 mt-1 text-center">
                   Certificate of Authorization
                 </p>
               </div>

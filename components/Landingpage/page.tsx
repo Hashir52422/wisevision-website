@@ -11,7 +11,7 @@ import Reviews from '@/components/Landingpage/Reviews';
 
 export default function Landingpage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white max-w-[1920px] mx-auto overflow-x-hidden">
       <Header />
       <Hero />
       <Products />

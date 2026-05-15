@@ -87,7 +87,7 @@ export default function Products({
   };
 
   const renderProductGrid = (items: Product[] = []) => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {items.map((product, index) => (
         <ProductCard
           key={index}
@@ -186,7 +186,7 @@ export default function Products({
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="w-full max-h-90 pr-15 object-contain rounded-xl cursor-pointer hover:opacity-90 transition-opacity duration-200"
+                              className="w-full max-h-[300px] md:max-h-[360px] object-contain rounded-xl cursor-pointer hover:opacity-90 transition-opacity duration-200"
                             />
                           </Link>
                         ) : product.href ? (
@@ -194,14 +194,14 @@ export default function Products({
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="w-full max-h-90 pr-15 object-contain rounded-xl cursor-pointer hover:opacity-90 transition-opacity duration-200"
+                              className="w-full max-h-[300px] md:max-h-[360px] object-contain rounded-xl cursor-pointer hover:opacity-90 transition-opacity duration-200"
                             />
                           </a>
                         ) : (
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full max-h-90 pr-15 object-contain rounded-xl"
+                            className="w-full max-h-[300px] md:max-h-[360px] object-contain rounded-xl"
                           />
                         )}
                       </div>

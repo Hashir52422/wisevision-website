@@ -80,10 +80,10 @@ export default function BlogArticle({
 
             {/* Right: Other Articles */}
             {otherArticles.length > 0 && (
-              <div className="w-[400px] ml-20">
-                <div className="bg-[#EEF6FB] rounded-2xl p-8">
+              <div className="w-full lg:w-[340px] xl:w-[400px] flex-shrink-0">
+                <div className="bg-[#EEF6FB] rounded-2xl p-6 md:p-8">
                   <h3 className="text-xl md:text-2xl font-outfit font-bold text-[#08425D] mb-3">Other Articles</h3>
-                  <div className="w-75 h-0.5 bg-[#00AEEF] mb-6" />
+                  <div className="w-full h-0.5 bg-[#00AEEF] mb-6" />
                   <div className="flex flex-col">
                     {otherArticles.map((article, i) => (
                       <div key={i}>

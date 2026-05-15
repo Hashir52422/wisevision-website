@@ -21,7 +21,6 @@ interface Slide {
   subtitleColor?: string;
   textAlign?: 'left' | 'center';
   showCta?: boolean;
-  paddingBottom?: string;
 }
 
 const slides: Slide[] = [
@@ -56,7 +55,6 @@ const slides: Slide[] = [
     subtitleColor: "text-white/80",
     textAlign: "center",
     showCta: false,
-    paddingBottom: "pb-70",
   },
 ];
 
@@ -65,12 +63,12 @@ const total = slides.length + 1;
 
 function SlidePanel({ slide, index, onGetQuoteClick }: { slide: Slide; index: number; onGetQuoteClick: () => void }) {
   const isCenter = slide.textAlign === 'center';
+  const hasBgImage = !!slide.bgImage;
   
-  // Determine button color based on slide index
   const getButtonColor = (idx: number) => {
-    if (idx === 0) return '#08425D'; // First slide
-    if (idx === 1) return '#14A4E9'; // Second slide
-    return '#007bff'; // Default for other slides
+    if (idx === 0) return '#08425D';
+    if (idx === 1) return '#14A4E9';
+    return '#007bff';
   };
   
   const buttonColor = getButtonColor(index);
@@ -78,7 +76,7 @@ function SlidePanel({ slide, index, onGetQuoteClick }: { slide: Slide; index: nu
   
   return (
     <div
-      className="h-full relative flex-shrink-0"
+      className="h-full relative flex-shrink-0 overflow-hidden"
       style={{
         width: `${100 / total}%`,
         ...(slide.bgImage
@@ -86,18 +84,24 @@ function SlidePanel({ slide, index, onGetQuoteClick }: { slide: Slide; index: nu
           : { backgroundColor: '#fff' }),
       }}
     >
-      <div className="h-full container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row items-center">
+      {/* Overlay for bg-image slides — stronger on mobile so text is always readable */}
+      {hasBgImage && (
+        <div className="absolute inset-0 bg-black/50 sm:bg-black/35 lg:bg-black/20" />
+      )}
+
+      <div className="h-full container mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center relative z-10">
+        {/* Text block */}
         <div
-          className={`z-10 flex flex-col justify-center h-full
+          className={`flex flex-col justify-center pt-8 sm:pt-0
             ${isCenter
-              ? 'w-full items-center text-center ' + (slide.paddingBottom ?? '')
-              : 'w-full lg:w-1/2 lg:pr-12 items-start text-center lg:text-left'}
+              ? 'w-full items-center text-center pb-18 lg:pb-75'
+              : 'w-full lg:w-1/2 lg:pr-12 items-center lg:items-start text-center lg:text-left'}
           `}
         >
-          <h1 className={`${slide.titleColor ?? 'text-[#007bff]'} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-outfit font-bold leading-tight mb-3 sm:mb-4`}>
+          <h1 className={`${slide.titleColor ?? 'text-[#007bff]'} text-xl sm:text-3xl md:text-4xl lg:text-6xl font-outfit font-bold leading-tight mb-2 sm:mb-4`}>
             {slide.title}
           </h1>
-          <p className={`${slide.subtitleColor ?? 'text-gray-700'} text-xs sm:text-sm md:text-base font-outfit font-normal leading-relaxed mb-4 sm:mb-6 ${isCenter ? 'max-w-xl' : 'max-w-sm'}`}>
+          <p className={`${slide.subtitleColor ?? 'text-gray-700'} text-sm sm:text-base md:text-lg lg:text-xl font-outfit font-normal leading-relaxed mb-4 sm:mb-6 max-w-2xl`}>
             {slide.subtitle}
           </p>
           {slide.showCta && (
@@ -112,16 +116,29 @@ function SlidePanel({ slide, index, onGetQuoteClick }: { slide: Slide; index: nu
             </button>
           )}
         </div>
+
+        {/* Desktop-only right-side product image */}
         {!isCenter && slide.image && (
-          <div className="hidden lg:flex w-1/2 h-full items-center justify-end">
+          <div className="hidden lg:flex w-1/2 h-full items-center justify-end overflow-hidden">
             <img
               src={slide.image}
               alt="SMD Video Wall Display"
-              className="w-[110%] h-full object-contain object-right -mr-[10%]"
+              className="w-full h-full object-contain object-right"
             />
           </div>
         )}
       </div>
+
+      {/* Mobile-only: show product image at bottom of slide */}
+      {!isCenter && slide.image && (
+        <div className="lg:hidden absolute bottom-0 right-0 w-2/3 h-1/2 pointer-events-none">
+          <img
+            src={slide.image}
+            alt="SMD Video Wall Display"
+            className="w-full h-full object-contain object-bottom"
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -157,7 +174,7 @@ export default function Hero() {
   const dotIndex = current % slides.length;
 
   return (
-    <section className="relative bg-white overflow-hidden">
+    <section className="relative bg-white overflow-hidden max-w-[1920px] mx-auto">
       <div className="h-[420px] sm:h-[500px] md:h-[560px] lg:h-[620px]">
         <div
           className={`flex h-full ${animated ? 'transition-transform duration-700 ease-in-out' : ''}`}

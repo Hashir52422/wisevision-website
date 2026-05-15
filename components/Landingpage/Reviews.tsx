@@ -3,31 +3,31 @@
 const reviews = [
   {
     name: 'Salman Ahmed',
-    role: 'Head of IT Infrastructure',
-    company: 'engro corp',
+    role: 'Business Owner',
+    company: '',
     companyStyle: 'text-[22px] font-light tracking-wide text-gray-700',
     comment:
-      '"Arista Vision provided an exceptional indoor SMD solution for our executive spaces. The pixel density and color accuracy of the displays meet our strict corporate standards. Their engineering team executed the installation with precision and minimal disruption to our operations."',
+      '"Wise  Vision provided an exceptional indoor SMD solution for our executive spaces. The pixel density and color accuracy of the displays meet our strict corporate standards. Their engineering team executed the installation with precision and minimal disruption to our operations."',
     rating: 5,
     // ADD: avatar: salmanImg, (import your image)
   },
   {
-    name: 'Kamran Bukhari',
-    role: 'Director of Operations',
-    company: 'GIGA MALL',
+    name: 'Sangeen Sher',
+    role: 'Local Guide',
+    company: '',
     companyStyle: 'text-[22px] font-black tracking-tight text-gray-900',
     comment:
-      '"Operating a high-traffic retail environment requires digital infrastructure that runs 24/7 without failure. Arista Vision delivered massive, high-refresh-rate LED walls that have performed flawlessly. Their post-installation support and SLA fulfillment have been highly reliable."',
+      '"Emerging business in Pakistan with an excellent display!\nThey provide a great experience and give customers a clear idea when purchasing screens. Overall, my experience was excellent. I visited for a purchase, the team is professional, though quite busy with their new projects"',
     rating: 5,
-    // ADD: avatar: kamranImg,
+    // ADD: avatar: sangeenImg,
   },
   {
-    name: 'Usman Tariq',
-    role: 'Project Director',
-    company: 'BAHRIA TOWN',
+    name: 'Taimoor Siddique',
+    role: 'Self Employeed', 
+    company: '',
     companyStyle: 'text-[14px] font-semibold tracking-widest text-gray-700 uppercase',
     comment:
-      '"We required rugged, weatherproof LED infrastructure for our outdoor advertising network. Arista Vision integrated IP65-rated outdoor cabinets that withstand severe weather while maintaining peak brightness. Their structural engineering approach is solid and dependable."',
+      '"A perfect place to buy and get outdoor and indoor smd and video wall installed. 10/10 for their experience, customer interaction and performance. Highly satisfied with the product and service. I would highly recommend Wise Vision to anyone looking for high-quality display solutions."',
     rating: 5,
     // ADD: avatar: usmanImg,
   },
@@ -69,10 +69,10 @@ export default function Reviews() {
 
         {/* ── Header ──────────────────────────────────────────────────────────── */}
         <div className="text-center mb-10">
-          <h2 className="text-[44px] font-outfit font-meduim text-[#003088] mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-[44px] font-outfit font-meduim text-[#003088] mb-4">
             Hear From Our Partners
           </h2>
-          <p className="text-[18px] text-gray-500 font-outfit leading-relaxed max-w-lg mx-auto">
+          <p className="text-base sm:text-lg md:text-[18px] text-gray-500 font-outfit leading-relaxed max-w-lg mx-auto">
             We believe in delivering uncompromised hardware quality and ensuring
             complete client satisfaction above all else.
           </p>
@@ -101,7 +101,7 @@ export default function Reviews() {
         </div>
 
         {/* ── Review cards ─────────────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {reviews.map((review, index) => (
             <div key={index} className="flex flex-col justify-between">
 

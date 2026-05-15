@@ -29,11 +29,11 @@ export default function OurClients() {
                   duration-300 ease-out group-hover:scale-x-100">
                 </div>
               </div>
-              <div className="w-full h-12 sm:h-14 md:h-22 flex items-center justify-center">
+              <div className="w-full h-12 sm:h-14 md:h-16 flex items-center justify-center">
                 <img 
                   src={`/images/OC${item}.png`}
                   alt={`Client ${item}`}
-                  className="w-full h-full object-none"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
@@ -52,11 +52,11 @@ export default function OurClients() {
                   duration-300 ease-out group-hover:scale-x-100">
                 </div>
               </div>
-              <div className="w-full h-14 sm:h-14 md:h-22 flex items-center justify-center">
+              <div className="w-full h-14 sm:h-14 md:h-16 flex items-center justify-center">
                 <img 
                   src={`/images/OC${item}.png`}
                   alt={`Client ${item}`}
-                  className="w-full h-full object-none"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>

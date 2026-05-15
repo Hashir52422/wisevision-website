@@ -28,9 +28,11 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} font-outfit h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-hidden">
         <ClerkProvider>
-          {children}
+          <div className="w-full max-w-[1920px] mx-auto">
+            {children}
+          </div>
         </ClerkProvider>
       </body>
     </html>

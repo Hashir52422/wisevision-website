@@ -77,7 +77,7 @@ export default function Partners() {
   const next = () => { setAnimated(true); setCurrent((prev) => prev + 1); };
 
   return (
-    <section className="w-full">
+    <section className="w-full max-w-[1920px] mx-auto">
       {/* Header */}
       <div className="py-6 sm:py-8 bg-white text-center">
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-outfit font-semibold text-[#00AEEF] mb-2 px-4">

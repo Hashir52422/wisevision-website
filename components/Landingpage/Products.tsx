@@ -12,7 +12,7 @@ export default function Products() {
             <img
               src={astronaut.src}
               alt="Astronaut on SMD Screen"
-              className="ml-10   w-full max-w-[220px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[460px] h-auto"
+              className="w-full max-w-[220px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[460px] h-auto"
             />
           </div>
 

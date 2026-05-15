@@ -72,7 +72,7 @@ export default function ProductDetail({
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
             {/* Product Image */}
-            <div className="w-full md:w-[500px] flex-shrink-0">
+            <div className="w-full md:w-[45%] lg:w-[420px] flex-shrink-0">
               <div className="relative w-full aspect-square rounded-3xl overflow-hidden">
                 <Image
                   src={image}
@@ -85,7 +85,7 @@ export default function ProductDetail({
             </div>
 
             {/* Right Content */}
-            <div className="flex-1 pt-18 sm:pt-0">
+            <div className="flex-1 pt-0">
               <h1 className="font-outfit font-bold text-3xl md:text-4xl text-[#0f141e] mb-4">
                 {bannerTitle}
               </h1>

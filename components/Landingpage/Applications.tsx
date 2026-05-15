@@ -119,7 +119,7 @@ export default function Applications() {
               key={app.name}
               className={`
                 group relative overflow-hidden rounded-xl border transition-all duration-500 cursor-pointer
-                hover:scale-[1.02] hover:shadow-xl h-[200px]
+                hover:scale-[1.02] hover:shadow-xl h-[160px] sm:h-[200px]
                 ${app.accent}
               `}
             >

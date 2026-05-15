@@ -54,20 +54,20 @@ export default function Projects() {
             style={{ transform: `translateX(-${currentPage * 100}%)` }}
           >
             {Array.from({ length: TOTAL_PAGES }).map((_, pageIndex) => (
-              <div key={pageIndex} className="flex-shrink-0 w-full flex flex-row gap-4 md:gap-6">
+              <div key={pageIndex} className="flex-shrink-0 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
                 {allProjects.slice(pageIndex * 3, pageIndex * 3 + 3).map((project, i) => (
-                  <div key={`${pageIndex}-${i}`} className="flex-1 min-w-0">
+                  <div key={`${pageIndex}-${i}`} className="min-w-0">
                     <BlogCard
                       image={project.image}
                       title={project.title}
                       titleCentered={true}
-                      titleFontSize='text-3xl'
+                      titleFontSize='text-lg sm:text-xl md:text-2xl'
                       titleColor='text-[#0F141E]'
                       tagCentered={true}
                       tagColor="text-[#7A7F8E] bg-white"
                       tag={project.tag}
                       href={project.href}
-                      tagFontSize='text-md'
+                      tagFontSize='text-sm md:text-md'
                     />
                   </div>
                 ))}
