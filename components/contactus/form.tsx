@@ -155,14 +155,13 @@ export default function ContactForm({
           </div>
 
           <div>
-            <label className="block text-black font-outfit font-medium mb-2">Email <span className="text-red-500">*</span></label>
+            <label className="block text-black font-outfit font-medium mb-2">Email </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="enter your email"
-              required
               className="text-[#7A7F8E] w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>

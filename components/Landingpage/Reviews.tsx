@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 const reviews = [
   {
     name: 'Salman Ahmed',
@@ -9,26 +11,29 @@ const reviews = [
     comment:
       '"Wise  Vision provided an exceptional indoor SMD solution for our executive spaces. The pixel density and color accuracy of the displays meet our strict corporate standards. Their engineering team executed the installation with precision and minimal disruption to our operations."',
     rating: 5,
+    avatar: '/images/R1.png',
     // ADD: avatar: salmanImg, (import your image)
   },
   {
     name: 'Sangeen Sher',
-    role: 'Local Guide',
+    role: 'Business Owner',
     company: '',
     companyStyle: 'text-[22px] font-black tracking-tight text-gray-900',
     comment:
       '"Emerging business in Pakistan with an excellent display!\nThey provide a great experience and give customers a clear idea when purchasing screens. Overall, my experience was excellent. I visited for a purchase, the team is professional, though quite busy with their new projects"',
     rating: 5,
+    avatar: '/images/R2.png',
     // ADD: avatar: sangeenImg,
   },
   {
     name: 'Taimoor Siddique',
-    role: 'Self Employeed', 
+    role: 'Business Owner', 
     company: '',
     companyStyle: 'text-[14px] font-semibold tracking-widest text-gray-700 uppercase',
     comment:
       '"A perfect place to buy and get outdoor and indoor smd and video wall installed. 10/10 for their experience, customer interaction and performance. Highly satisfied with the product and service. I would highly recommend Wise Vision to anyone looking for high-quality display solutions."',
     rating: 5,
+    avatar: '/images/R3.png',
     // ADD: avatar: usmanImg,
   },
 ];
@@ -115,7 +120,7 @@ export default function Reviews() {
                 <div className="flex items-center gap-3">
                   {/* Avatar circle — ADD your image here */}
                   <div className="w-12 h-12 rounded-full bg-gray-300 overflow-hidden flex-shrink-0">
-                    {/* ADD: <Image src={review.avatar} alt={review.name} width={48} height={48} className="object-cover" /> */}
+                    <Image src={review.avatar} alt={review.name} width={48} height={48} className="object-cover w-full h-full" />
                   </div>
                   <div>
                     <p className="text-[15px] font-outfit font-bold text-gray-900 leading-tight">
