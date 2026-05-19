@@ -2,7 +2,7 @@
 
 import arrowDown from '@/public/images/arrow-down.svg';
 
-const topBar = "WISE VISION is an Authorized distributor of Samsung, Philips, LianTronics, & Unilumin A/V Solutions in Pakistan.";
+const topBar = "Wise Vision — Pakistan’s Authorized Distributor of Unilumin, Lampro, BOE, LianTronics, Dahua, Huidu & DSPPA, delivering world-class LED display, digital signage, and professional A/V integration solutions nationwide.";
 const logo = { src: "/images/Logo.svg", alt: "WISE VISION Logo" };
 const navLinks = [
   { name: "Home", href: "/", active: true },
@@ -148,9 +148,9 @@ export default function Header() {
   return (
     <header className="relative z-50">
       {/* Top Bar */}
-      <div className="bg-[#14a4e9] py-2 sm:h-14 md:h-16 overflow-hidden">
-        <div className="container mx-auto px-4 h-full flex items-center justify-center">
-          <p className="text-white text-sm sm:text-base md:text-lg lg:text-[22px] font-outfit font-normal text-center px-2 py-1 sm:py-0">
+      <div className="bg-[#14a4e9]">
+        <div className="container mx-auto px-4 py-2 sm:py-3 flex items-center justify-center">
+          <p className="text-white text-xs sm:text-sm md:text-base font-outfit font-normal text-center leading-relaxed">
             {topBar}
           </p>
         </div>
