@@ -6,7 +6,7 @@ import emailIcon from '@/public/images/email.png';
 import phoneIcon from '@/public/images/phone.png';
 import instagramIcon from '@/public/images/Instagram.svg';
 
-const WHATSAPP_NUMBER = '923280344789'; // 03165994525 in international format
+const WHATSAPP_NUMBER = '923352222933'; // 03352222933 in international format
 
 interface ContactFormProps {
   title?: string;
@@ -25,7 +25,7 @@ export default function ContactForm({
   description = "Deploy premium visual infrastructure with Wise Vision. From upgrading corporate boardrooms and integrating large-scale outdoor SMDs to supplying authorized Samsung and Philips displays, our expert team is ready to guide your project.",
   location = "DHA Phase II, GT Road, Islamabad",
   email = "wisevision@gmail.com",
-  phone = "+92 328 0344789",
+  phone = "+92 335 2222933",
   formTitle = "Get In Touch",
   showSocialMedia = true
 }: ContactFormProps) {
